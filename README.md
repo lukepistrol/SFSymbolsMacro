@@ -1,3 +1,15 @@
+<p>
+  <img src="https://img.shields.io/badge/Swift-5.9-f05318.svg" />
+  <img src="https://img.shields.io/badge/iOS->= 13.0-blue.svg" />
+  <img src="https://img.shields.io/badge/macOS->= 11.0-blue.svg" />
+  <img src="https://img.shields.io/badge/watchOS->= 6.0-blue.svg" />
+  <img src="https://img.shields.io/badge/tvOS->= 13.0-blue.svg" />
+  <img alt="GitHub" src="https://img.shields.io/github/license/lukepistrol/SFSymbolsMacro">
+  <a href="https://twitter.com/lukeeep_">
+    <img src="https://img.shields.io/badge/Twitter-@lukeeep_-1e9bf0.svg?style=flat" alt="Twitter: @lukeeep_" />
+  </a>
+</p>
+
 # SFSymbolsMacro
 
 This Swift Macro provides an easy way to make the use of SF Symbols in Swift more or less *"type-safe"*.
