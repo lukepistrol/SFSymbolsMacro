@@ -47,7 +47,7 @@ import SwiftUI
 enum Symbols: String { ... }
 ```
 
-The macro will then validate each `case` and add the expanded macro will look something like this:
+The macro will then validate each `case` and the expanded macro will look something like this:
 
 ```swift
 enum Symbols: String {
@@ -71,6 +71,9 @@ enum Symbols: String {
         return NSImage(systemSymbolName: self.rawValue, accessibilityDescription: accessibilityDescription)!
     }
     #endif
+    func callAsFunction() -> String {
+        return self.rawValue
+    }
 }
 ```
 
