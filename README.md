@@ -2,6 +2,28 @@
 
 This Swift Macro provides an easy way to make the use of SF Symbols in Swift more or less *"type-safe"*.
 
+## Installation
+
+### Xcode
+
+1. Click File > Add Package Dependencies
+2. Paste the following link into the search field on the upper-right:
+   > ```
+   > https://github.com/lukepistrol/SFSymbolsMacro.git
+   > ```
+
+### Swift Package Manager
+
+In `Package.swift`:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/lukepistrol/SFSymbolsMacro.git", from: "0.1.0")
+]
+```
+
+And then add the dependency to your targets.
+
 ## Usage
 
 Simply create an `enum` which will hold all the SF Symbols for your project:
