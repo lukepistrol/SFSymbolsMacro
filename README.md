@@ -83,6 +83,13 @@ var body: some View {
 }
 ```
 
+In case the provided raw value is not a valid SF Symbol, Xcode will show a compile error at the `enum-case` in question:
+
+![explicit raw value](https://github.com/lukepistrol/SFSymbolsMacro/assets/9460130/36713049-6b14-4fc4-8a07-df86837e4704)
+
+![inferred raw value](https://github.com/lukepistrol/SFSymbolsMacro/assets/9460130/9db30861-4b98-4e31-9c41-0b5e0a553293)
+
+
 ## Contribution
 
 If you have any ideas on how to take this further I'm happy to discuss things in an issue.
