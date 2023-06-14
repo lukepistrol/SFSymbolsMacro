@@ -22,6 +22,8 @@
  var body: some View {
    Symbols.circleFill.image // ~= Image(systemName: "circle.fill")
    Label("Globe", systemImage: Symbols.globe.name) // ~= Label("Globe", systemImage: "globe")
+   // the above can also be written as
+   Label("Globe", systemImage: Symbols.globe())
  }
  ```
  */

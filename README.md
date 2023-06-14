@@ -81,6 +81,8 @@ var body: some View {
     VStack {
         Symbols.circleFill.image
         Label("Globe", systemImage: Symbols.globe.name)
+        // the above can also be written as
+        Label("Globe", systemImage: Symbols.globe())
     }
 }
 ```
