@@ -18,6 +18,7 @@ Then simply import `SFSymbolsMacro` and add the `@SFSymbol` macro annotation to 
 
 ```swift
 import SFSymbolsMacro
+import SwiftUI
 
 @SFSymbol
 enum Symbols: String { ... }
