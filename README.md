@@ -100,3 +100,7 @@ In case the provided raw value is not a valid SF Symbol, Xcode will show a compi
 ## Contribution
 
 If you have any ideas on how to take this further I'm happy to discuss things in an issue.
+
+-----
+
+<a href="https://www.buymeacoffee.com/lukeeep" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
