@@ -43,6 +43,11 @@ public struct SFSymbolMacro: MemberMacro {
                 return NSImage(systemSymbolName: self.rawValue, accessibilityDescription: accessibilityDescription)!
             }
             #endif
+            """,
+            """
+            func callAsFunction() -> String {
+                return self.rawValue
+            }
             """
         ]
     }

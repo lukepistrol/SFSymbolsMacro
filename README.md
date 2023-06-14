@@ -33,6 +33,7 @@ enum Symbols: String {
     case circle
     case circleFill = "circle.fill"
     case shareIcon = "square.and.arrow.up"
+    case globe
 }
 ```
 
@@ -53,6 +54,7 @@ enum Symbols: String {
     case circle
     case circleFill = "circle.fill"
     case shareIcon = "square.and.arrow.up"
+    case globe
 
     var image: Image {
         Image(systemName: self.rawValue)
@@ -78,7 +80,9 @@ In your code you can then call a symbol:
 var body: some View {
     VStack {
         Symbols.circleFill.image
-        Text("Hello, World!)
+        Label("Globe", systemImage: Symbols.globe.name)
+        // the above can also be written as
+        Label("Globe", systemImage: Symbols.globe())
     }
 }
 ```
