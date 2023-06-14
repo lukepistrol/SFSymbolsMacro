@@ -39,6 +39,9 @@ final class SFSymbolsMacroTests: XCTestCase {
                     return NSImage(systemSymbolName: self.rawValue, accessibilityDescription: accessibilityDescription)!
                 }
                 #endif
+                func callAsFunction() -> String {
+                    return self.rawValue
+                }
             }
             """,
             macros: testMacros
@@ -62,6 +65,28 @@ final class SFSymbolsMacroTests: XCTestCase {
             """,
             diagnostics: [
                 .init(message: "\"circleFill\" is not a valid SF Symbol.", line: 3, column: 5)
+            ],
+            macros: testMacros
+        )
+    }
+
+    func testInvalidSFSymbolErrorExplicit() {
+        assertMacroExpansion(
+            """
+            @SFSymbol
+            enum Symbols: String {
+                case xyz = "xyz"
+            }
+            """,
+            expandedSource:
+            """
+
+            enum Symbols: String {
+                case xyz = "xyz"
+            }
+            """,
+            diagnostics: [
+                .init(message: "\"xyz\" is not a valid SF Symbol.", line: 3, column: 5)
             ],
             macros: testMacros
         )
