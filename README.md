@@ -8,9 +8,9 @@ This Swift Macro provides an easy way to make the use of SF Symbols in Swift mor
 
 1. Click File > Add Package Dependencies
 2. Paste the following link into the search field on the upper-right:
-   > ```
-   > https://github.com/lukepistrol/SFSymbolsMacro.git
-   > ```
+   ```
+   https://github.com/lukepistrol/SFSymbolsMacro.git
+   ```
 
 ### Swift Package Manager
 
