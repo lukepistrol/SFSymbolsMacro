@@ -72,6 +72,17 @@ enum Symbols: String {
 }
 ```
 
+In your code you can then call a symbol:
+
+```swift
+var body: some View {
+    VStack {
+        Symbols.circleFill.image
+        Text("Hello, World!)
+    }
+}
+```
+
 ## Contribution
 
 If you have any ideas on how to take this further I'm happy to discuss things in an issue.
