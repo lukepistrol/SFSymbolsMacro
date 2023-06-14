@@ -1,33 +1,68 @@
 import SwiftSyntaxMacros
 import SwiftSyntaxMacrosTestSupport
 import XCTest
-import SFSymbolsMacroMacros
+import SFSymbolsMacroImpl
 
 let testMacros: [String: Macro.Type] = [
-    "stringify": StringifyMacro.self,
+    "SFSymbol": SFSymbolMacro.self,
 ]
 
 final class SFSymbolsMacroTests: XCTestCase {
-    func testMacro() {
+
+    func testSFSymbolMacro() {
         assertMacroExpansion(
             """
-            #stringify(a + b)
+            @SFSymbol
+            enum Symbols: String {
+                case globe
+                case circleFill = "circle.fill"
+            }
             """,
-            expandedSource: """
-            (a + b, "a + b")
+            expandedSource:
+            """
+
+            enum Symbols: String {
+                case globe
+                case circleFill = "circle.fill"
+                var image: Image {
+                    Image(systemName: self.rawValue)
+                }
+                var name: String {
+                    self.rawValue
+                }
+                #if canImport(UIKit)
+                func uiImage(configuration: UIImage.Configuration? = nil) -> UIImage {
+                    UIImage(systemName: self.rawValue, withConfiguration: configuration)!
+                }
+                #else
+                func nsImage(accessibilityDescription: String? = nil) -> NSImage {
+                    return NSImage(systemSymbolName: self.rawValue, accessibilityDescription: accessibilityDescription)!
+                }
+                #endif
+            }
             """,
             macros: testMacros
         )
     }
 
-    func testMacroWithStringLiteral() {
+    func testInvalidSFSymbolError() {
         assertMacroExpansion(
-            #"""
-            #stringify("Hello, \(name)")
-            """#,
-            expandedSource: #"""
-            ("Hello, \(name)", #""Hello, \(name)""#)
-            """#,
+            """
+            @SFSymbol
+            enum Symbols: String {
+                case circleFill
+            }
+            """,
+            expandedSource:
+            """
+
+            enum Symbols: String {
+                case circleFill
+            }
+            """,
+            diagnostics: [
+                .init(message: "\"circleFill\" is not a valid SF Symbol.", line: 3, column: 5)
+            ],
             macros: testMacros
         )
     }
