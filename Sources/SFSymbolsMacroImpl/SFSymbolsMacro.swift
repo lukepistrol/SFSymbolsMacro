@@ -21,7 +21,7 @@ public struct SFSymbolMacro: MemberMacro {
         providingMembersOf declaration: Declaration,
         in context: Context
     ) throws -> [DeclSyntax] {
-        try validateSymbolName(declaration)
+        try validate(declaration)
         return [
             """
             var image: Image {
@@ -54,12 +54,29 @@ public struct SFSymbolMacro: MemberMacro {
 
     // MARK: Helper Methods
 
-    private static func validateSymbolName(_ declaration: DeclGroupSyntax) throws {
+    private static func validate(_ declaration: DeclGroupSyntax) throws {
+        try validateStringProtocolInheritance(declaration)
         let members = declaration.memberBlock.members
         let cases = members.compactMap { $0.decl.as(EnumCaseDeclSyntax.self) }
         let ids = getIdentifiers(from: cases)
         try ids.forEach { id throws in
             try assertUINSImage(for: id)
+        }
+    }
+
+    private static func validateStringProtocolInheritance(_ declaration: DeclGroupSyntax) throws {
+        guard let enumDecl = declaration.as(EnumDeclSyntax.self) else {
+            throw DiagnosticsError(diagnostics: [
+                .init(node: Syntax(declaration), message: SFSymbolDiagnostic.notAnEnum)
+            ])
+        }
+        let identifier = enumDecl.identifier
+        guard enumDecl.inheritanceClause?.inheritedTypeCollection.contains(where: {
+            $0.typeName.as(SimpleTypeIdentifierSyntax.self)?.name.text == "String"
+        }) ?? false else {
+            throw DiagnosticsError(diagnostics: [
+                .init(node: Syntax(identifier), message: SFSymbolDiagnostic.missingStringProtocolConformance(symbol: identifier.text))
+            ])
         }
     }
 
