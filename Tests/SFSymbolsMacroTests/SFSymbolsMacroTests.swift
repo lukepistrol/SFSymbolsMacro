@@ -91,4 +91,48 @@ final class SFSymbolsMacroTests: XCTestCase {
             macros: testMacros
         )
     }
+
+    func testInvalidEnum() {
+        assertMacroExpansion(
+            """
+            @SFSymbol
+            enum Symbols {
+                case globe
+            }
+            """,
+            expandedSource:
+            """
+
+            enum Symbols {
+                case globe
+            }
+            """,
+            diagnostics: [
+                .init(message: "Enum \"Symbols\" needs conformance to String protocol.", line: 2, column: 6)
+            ],
+            macros: testMacros
+        )
+    }
+
+    func testInvalidType() {
+        assertMacroExpansion(
+            """
+            @SFSymbol
+            struct Symbols {
+                let xyz = "xyz"
+            }
+            """,
+            expandedSource:
+            """
+
+            struct Symbols {
+                let xyz = "xyz"
+            }
+            """,
+            diagnostics: [
+                .init(message: "Macro \"@SFSymbol\" can only be applied to enums.", line: 1, column: 1)
+            ],
+            macros: testMacros
+        )
+    }
 }
