@@ -21,7 +21,7 @@ enum SFSymbolDiagnostic: DiagnosticMessage {
         case .notAnEnum:
             "Macro \"@SFSymbol\" can only be applied to enums."
         case .missingStringProtocolConformance(let symbol):
-            "Enum \"\(symbol)\" needs conformance to String protocol."
+            "Enum \"\(symbol)\" must declare a raw value type of String."
         }
     }
 

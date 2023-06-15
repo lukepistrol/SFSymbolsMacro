@@ -108,7 +108,7 @@ final class SFSymbolsMacroTests: XCTestCase {
             }
             """,
             diagnostics: [
-                .init(message: "Enum \"Symbols\" needs conformance to String protocol.", line: 2, column: 6)
+                .init(message: "Enum \"Symbols\" must declare a raw value type of String.", line: 2, column: 6)
             ],
             macros: testMacros
         )
