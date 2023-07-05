@@ -27,16 +27,24 @@ struct ContentView: View {
         VStack {
             Label("Hello, World!", systemImage: Symbols.globe())
             Spacer()
-            LazyVGrid(columns: .init(repeating: GridItem(.fixed(50)), count: 5), content: {
-                ForEach(Symbols.allCases, id: \.self.rawValue) { symbol in
+            LazyVGrid(columns: columns) {
+                ForEach(Symbols.allCases) { symbol in
                     symbol.image
                         .imageScale(.medium)
                         .font(.largeTitle)
                 }
-            })
+            }
         }
         .padding()
     }
+
+    private var columns: [GridItem] {
+        .init(repeating: GridItem(.fixed(50)), count: 5)
+    }
+}
+
+extension Symbols: Identifiable {
+    var id: String { self.rawValue }
 }
 
 #Preview {

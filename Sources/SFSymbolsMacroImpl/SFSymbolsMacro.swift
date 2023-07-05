@@ -96,9 +96,11 @@ public struct SFSymbolMacro: MemberMacro {
     }
 
     private static func assertUINSImage(for id: (SymbolPair)) throws {
-        if let _ = NSImage(systemSymbolName: id.id, accessibilityDescription: nil) {
-            return
-        }
+        #if canImport(UIKit)
+        if let _ = UIImage(systemName: id.id) { return }
+        #else
+        if let _ = NSImage(systemSymbolName: id.id, accessibilityDescription: nil) { return }
+        #endif
         throw DiagnosticsError(diagnostics: [
             .init(node: id.node, message: SFSymbolDiagnostic.noValidSFSymbol(symbol: id.0))
         ])
