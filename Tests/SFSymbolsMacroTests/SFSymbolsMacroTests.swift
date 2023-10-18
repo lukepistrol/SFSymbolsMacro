@@ -24,13 +24,16 @@ final class SFSymbolsMacroTests: XCTestCase {
             enum Symbols: String {
                 case globe
                 case circleFill = "circle.fill"
+
                 var image: Image {
                     Image(systemName: self.rawValue)
                 }
+
                 var name: String {
                     self.rawValue
                 }
-                #if canImport(UIKit)
+
+                #if canImport (UIKit)
                 func uiImage(configuration: UIImage.Configuration? = nil) -> UIImage {
                     UIImage(systemName: self.rawValue, withConfiguration: configuration)!
                 }
@@ -39,6 +42,7 @@ final class SFSymbolsMacroTests: XCTestCase {
                     return NSImage(systemSymbolName: self.rawValue, accessibilityDescription: accessibilityDescription)!
                 }
                 #endif
+
                 func callAsFunction() -> String {
                     return self.rawValue
                 }
@@ -63,13 +67,16 @@ final class SFSymbolsMacroTests: XCTestCase {
             public enum Symbols: String {
                 case globe
                 case circleFill = "circle.fill"
+
                 public var image: Image {
                     Image(systemName: self.rawValue)
                 }
+
                 public var name: String {
                     self.rawValue
                 }
-                #if canImport(UIKit)
+
+                #if canImport (UIKit)
                 public func uiImage(configuration: UIImage.Configuration? = nil) -> UIImage {
                     UIImage(systemName: self.rawValue, withConfiguration: configuration)!
                 }
@@ -78,6 +85,7 @@ final class SFSymbolsMacroTests: XCTestCase {
                     return NSImage(systemSymbolName: self.rawValue, accessibilityDescription: accessibilityDescription)!
                 }
                 #endif
+
                 public func callAsFunction() -> String {
                     return self.rawValue
                 }
@@ -102,13 +110,16 @@ final class SFSymbolsMacroTests: XCTestCase {
             internal enum Symbols: String {
                 case globe
                 case circleFill = "circle.fill"
+
                 internal var image: Image {
                     Image(systemName: self.rawValue)
                 }
+
                 internal var name: String {
                     self.rawValue
                 }
-                #if canImport(UIKit)
+
+                #if canImport (UIKit)
                 internal func uiImage(configuration: UIImage.Configuration? = nil) -> UIImage {
                     UIImage(systemName: self.rawValue, withConfiguration: configuration)!
                 }
@@ -117,6 +128,7 @@ final class SFSymbolsMacroTests: XCTestCase {
                     return NSImage(systemSymbolName: self.rawValue, accessibilityDescription: accessibilityDescription)!
                 }
                 #endif
+
                 internal func callAsFunction() -> String {
                     return self.rawValue
                 }
@@ -141,13 +153,16 @@ final class SFSymbolsMacroTests: XCTestCase {
             fileprivate enum Symbols: String {
                 case globe
                 case circleFill = "circle.fill"
+
                 fileprivate var image: Image {
                     Image(systemName: self.rawValue)
                 }
+
                 fileprivate var name: String {
                     self.rawValue
                 }
-                #if canImport(UIKit)
+
+                #if canImport (UIKit)
                 fileprivate func uiImage(configuration: UIImage.Configuration? = nil) -> UIImage {
                     UIImage(systemName: self.rawValue, withConfiguration: configuration)!
                 }
@@ -156,6 +171,7 @@ final class SFSymbolsMacroTests: XCTestCase {
                     return NSImage(systemSymbolName: self.rawValue, accessibilityDescription: accessibilityDescription)!
                 }
                 #endif
+
                 fileprivate func callAsFunction() -> String {
                     return self.rawValue
                 }
@@ -180,13 +196,16 @@ final class SFSymbolsMacroTests: XCTestCase {
             private enum Symbols: String {
                 case globe
                 case circleFill = "circle.fill"
+
                 private var image: Image {
                     Image(systemName: self.rawValue)
                 }
+
                 private var name: String {
                     self.rawValue
                 }
-                #if canImport(UIKit)
+
+                #if canImport (UIKit)
                 private func uiImage(configuration: UIImage.Configuration? = nil) -> UIImage {
                     UIImage(systemName: self.rawValue, withConfiguration: configuration)!
                 }
@@ -195,6 +214,7 @@ final class SFSymbolsMacroTests: XCTestCase {
                     return NSImage(systemSymbolName: self.rawValue, accessibilityDescription: accessibilityDescription)!
                 }
                 #endif
+
                 private func callAsFunction() -> String {
                     return self.rawValue
                 }

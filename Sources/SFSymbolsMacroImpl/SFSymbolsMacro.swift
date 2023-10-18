@@ -115,7 +115,7 @@ public struct SFSymbolMacro: MemberMacro {
                 .init(node: Syntax(declaration), message: SFSymbolDiagnostic.notAnEnum)
             ])
         }
-        guard let accessLevel = enumdeclaration.modifiers?.first(where: \.isNeededAccessLevelModifier)?.name.trimmed else {
+        guard let accessLevel = enumdeclaration.modifiers.first(where: \.isNeededAccessLevelModifier)?.name.trimmed else {
             return ""
         }
         return "\(accessLevel.text) "
