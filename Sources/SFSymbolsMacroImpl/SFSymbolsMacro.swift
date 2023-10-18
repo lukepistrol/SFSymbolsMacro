@@ -22,30 +22,32 @@ public struct SFSymbolMacro: MemberMacro {
         in context: Context
     ) throws -> [DeclSyntax] {
         try validate(declaration)
+        let accessLevel = try getAccessLevel(declaration)
+
         return [
             """
-            var image: Image {
+            \(raw: accessLevel)var image: Image {
                 Image(systemName: self.rawValue)
             }
             """,
             """
-            var name: String {
+            \(raw: accessLevel)var name: String {
                 self.rawValue
             }
             """,
             """
             #if canImport(UIKit)
-            func uiImage(configuration: UIImage.Configuration? = nil) -> UIImage {
+            \(raw: accessLevel)func uiImage(configuration: UIImage.Configuration? = nil) -> UIImage {
                 UIImage(systemName: self.rawValue, withConfiguration: configuration)!
             }
             #else
-            func nsImage(accessibilityDescription: String? = nil) -> NSImage {
+            \(raw: accessLevel)func nsImage(accessibilityDescription: String? = nil) -> NSImage {
                 return NSImage(systemSymbolName: self.rawValue, accessibilityDescription: accessibilityDescription)!
             }
             #endif
             """,
             """
-            func callAsFunction() -> String {
+            \(raw: accessLevel)func callAsFunction() -> String {
                 return self.rawValue
             }
             """
@@ -105,4 +107,29 @@ public struct SFSymbolMacro: MemberMacro {
             .init(node: id.node, message: SFSymbolDiagnostic.noValidSFSymbol(symbol: id.0))
         ])
     }
+
+    /// Gets access level
+    private static func getAccessLevel(_ declaration: DeclGroupSyntax) throws -> String {
+        guard let enumdeclaration = declaration.as(EnumDeclSyntax.self) else {
+            throw DiagnosticsError(diagnostics: [
+                .init(node: Syntax(declaration), message: SFSymbolDiagnostic.notAnEnum)
+            ])
+        }
+        guard let accessLevel = enumdeclaration.modifiers?.first(where: \.isNeededAccessLevelModifier)?.name.trimmed else {
+            return ""
+        }
+        return "\(accessLevel.text) "
+    }
+}
+
+extension DeclModifierSyntax {
+  var isNeededAccessLevelModifier: Bool {
+    switch self.name.tokenKind {
+    case .keyword(.public): return true
+    case .keyword(.internal): return true
+    case .keyword(.fileprivate): return true
+    case .keyword(.private): return true
+    default: return false
+    }
+  }
 }
