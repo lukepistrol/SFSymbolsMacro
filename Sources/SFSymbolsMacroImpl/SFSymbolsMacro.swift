@@ -72,9 +72,9 @@ public struct SFSymbolMacro: MemberMacro {
                 .init(node: Syntax(declaration), message: SFSymbolDiagnostic.notAnEnum)
             ])
         }
-        let identifier = enumDecl.identifier
-        guard enumDecl.inheritanceClause?.inheritedTypeCollection.contains(where: {
-            $0.typeName.as(SimpleTypeIdentifierSyntax.self)?.name.text == "String"
+        let identifier = enumDecl.name
+        guard enumDecl.inheritanceClause?.inheritedTypes.contains(where: {
+            $0.type.as(IdentifierTypeSyntax.self)?.name.text == "String"
         }) ?? false else {
             throw DiagnosticsError(diagnostics: [
                 .init(node: Syntax(identifier), message: SFSymbolDiagnostic.missingStringProtocolConformance(symbol: identifier.text))
@@ -89,7 +89,7 @@ public struct SFSymbolMacro: MemberMacro {
                 let idNode = $0.rawValue?.value.as(StringLiteralExprSyntax.self)?.segments.first {
                     $0.as(StringSegmentSyntax.self) != nil
                 }
-                let id = idNode?.as(StringSegmentSyntax.self)?.content.text ?? $0.identifier.text
+                let id = idNode?.as(StringSegmentSyntax.self)?.content.text ?? $0.name.text
                 let syntax = Syntax(enumCase)
                 return (id: id, node: syntax)
             }
