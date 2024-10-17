@@ -33,7 +33,7 @@ final class SFSymbolsMacroTests: XCTestCase {
                     self.rawValue
                 }
 
-                #if canImport (UIKit)
+                #if canImport(UIKit)
                 func uiImage(configuration: UIImage.Configuration? = nil) -> UIImage {
                     UIImage(systemName: self.rawValue, withConfiguration: configuration)!
                 }
@@ -76,7 +76,7 @@ final class SFSymbolsMacroTests: XCTestCase {
                     self.rawValue
                 }
 
-                #if canImport (UIKit)
+                #if canImport(UIKit)
                 public func uiImage(configuration: UIImage.Configuration? = nil) -> UIImage {
                     UIImage(systemName: self.rawValue, withConfiguration: configuration)!
                 }
@@ -119,7 +119,7 @@ final class SFSymbolsMacroTests: XCTestCase {
                     self.rawValue
                 }
 
-                #if canImport (UIKit)
+                #if canImport(UIKit)
                 internal func uiImage(configuration: UIImage.Configuration? = nil) -> UIImage {
                     UIImage(systemName: self.rawValue, withConfiguration: configuration)!
                 }
@@ -162,7 +162,7 @@ final class SFSymbolsMacroTests: XCTestCase {
                     self.rawValue
                 }
 
-                #if canImport (UIKit)
+                #if canImport(UIKit)
                 fileprivate func uiImage(configuration: UIImage.Configuration? = nil) -> UIImage {
                     UIImage(systemName: self.rawValue, withConfiguration: configuration)!
                 }
@@ -205,7 +205,7 @@ final class SFSymbolsMacroTests: XCTestCase {
                     self.rawValue
                 }
 
-                #if canImport (UIKit)
+                #if canImport(UIKit)
                 private func uiImage(configuration: UIImage.Configuration? = nil) -> UIImage {
                     UIImage(systemName: self.rawValue, withConfiguration: configuration)!
                 }
